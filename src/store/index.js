@@ -9,10 +9,11 @@ export default new Vuex.Store({
     issues: {}
   },
   getters: {
-    GET_ISSUES: (store) => store.issues
+    getIssuesTotalCount: (store) => store.issues.totalCount,
+    getIssuesNodes: (store) => store.issues.nodes
   },
   mutations: {
-    SET_ISSUES (store, payload) {
+    setIssues (store, payload) {
       store.issues = payload
     }
   },
@@ -20,7 +21,7 @@ export default new Vuex.Store({
     fetchIssues ({ commit }, payload) {
       fetchIssuesData(payload)
         .then((res) => {
-          commit('SET_ISSUES', res.data.repository.openIssues)
+          commit('setIssues', res.data.repository.openIssues)
         })
     }
   },
