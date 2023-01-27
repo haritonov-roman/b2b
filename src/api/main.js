@@ -1,6 +1,6 @@
 import { fetchData } from '@/api'
 
-export const fetchIssuesData = ({ first }) => {
+export const fetchIssues = ({ first }) => {
   const query = `
     query {
       repository(owner: "vuejs", name: "vue") {
@@ -12,7 +12,6 @@ export const fetchIssuesData = ({ first }) => {
           totalCount
           nodes {
             id
-            createdAt
             title
             state
             comments {
@@ -23,6 +22,7 @@ export const fetchIssuesData = ({ first }) => {
             labels(first: 10) {
               nodes {
                 name
+                color
               }
             }
             author {

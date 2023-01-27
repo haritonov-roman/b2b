@@ -18,13 +18,16 @@ export default {
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+html {
+  font-family: var(--cds-font-family-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  font-size: var(--cds-font-base);
+  color: var(--cds-color-text-primary);
+}
+
+#app {
   min-height: 100vh;
-  color: #2c3e50;
   background-color: var(--cds-color-background-page-primary);
 }
 

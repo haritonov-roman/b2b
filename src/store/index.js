@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { fetchIssuesData } from '@/api/main'
+import { fetchIssues } from '@/api/main'
 
 Vue.use(Vuex)
 
@@ -9,8 +9,8 @@ export default new Vuex.Store({
     issues: {}
   },
   getters: {
-    getIssuesTotalCount: (store) => store.issues.totalCount,
-    getIssuesNodes: (store) => store.issues.nodes
+    issuesTotalCount: (store) => store.issues.totalCount,
+    issuesNodes: (store) => store.issues.nodes
   },
   mutations: {
     setIssues (store, payload) {
@@ -18,8 +18,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchIssues ({ commit }, payload) {
-      fetchIssuesData(payload)
+    getIssues ({ commit }, payload) {
+      fetchIssues(payload)
         .then((res) => {
           commit('setIssues', res.data.repository.openIssues)
         })
