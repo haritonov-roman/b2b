@@ -1,9 +1,16 @@
 import { fetchData } from '@/api'
 
-export const fetchIssues = ({ first = '', last = '', after = '', before = '' }) => {
+export const fetchIssues = ({
+  owner,
+  name,
+  first = '',
+  last = '',
+  after = '',
+  before = ''
+}) => {
   const query = `
     query {
-      repository(owner: "vuejs", name: "vue") {
+      repository(owner: "${owner}", name: "${name}") {
         openIssues: issues(
           states: OPEN
           orderBy: {field: CREATED_AT, direction: DESC}
@@ -40,10 +47,15 @@ export const fetchIssues = ({ first = '', last = '', after = '', before = '' }) 
   return fetchData(query)
 }
 
-export const fetchCursor = ({ first, after = '' }) => {
+export const fetchCursor = ({
+  owner,
+  name,
+  first,
+  after = ''
+}) => {
   const query = `
     {
-      repository(owner: "vuejs", name: "vue") {
+      repository(owner: "${owner}", name: "${name}") {
         openIssues: issues(
           states: OPEN
           orderBy: {field: CREATED_AT, direction: DESC}

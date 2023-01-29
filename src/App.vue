@@ -12,12 +12,20 @@ export default {
   <div id="app">
     <ui-header />
     <div class="content">
-      <router-view/>
+      <cds-grid fluid>
+        <cds-row>
+          <cds-col xs="8" sm="8" md="10" offset-md="3">
+            <router-view/>
+          </cds-col>
+        </cds-row>
+      </cds-grid>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+@import "@central-design-system/components/dist/mixins/scss/layout/convert";
+
 html {
   font-family: var(--cds-font-family-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,6 +41,6 @@ html {
 }
 
 .content {
-  padding: 32px 0;
+  padding: toRem(32px) 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <script>
-import moment from 'moment'
+import { transformDate } from '@/utils'
 
 export default {
   name: 'UiIssue',
@@ -13,12 +13,16 @@ export default {
 
   computed: {
     subtitle () {
-      return `#${this.issue.number} opened on ${moment(this.issue.publishedAt).calendar(null, {
-        sameDay: '[Today]',
-        lastDay: '[Yesterday]',
-        lastWeek: '[Last week]',
-        sameElse: 'DD.MM.YYYY'
-      })}${this.issue.author ? `by ${this.issue.author.login}` : ''}`
+      return `#${this.issue.number} opened on ${transformDate(this.issue.publishedAt)} ${this.issue.author ? `by ${this.issue.author.login}` : ''}`
+    },
+
+    toIssue () {
+      return {
+        name: 'issue',
+        params: {
+          id: this.issue.number
+        }
+      }
     }
   }
 }
@@ -29,7 +33,10 @@ export default {
     <div class="issue__container">
       <div class="issue__left">
         <cds-icon name="Alert"/>
-        <span class="issue__title">
+        <router-link
+          class="issue__title"
+          :to="toIssue"
+        >
           {{ issue.title }}
           <cds-tag
             v-for="(item, index) in issue.labels.nodes"
@@ -41,7 +48,7 @@ export default {
               transform: 'translateY(-0.125rem)'
             }"
           />
-        </span>
+        </router-link>
       </div>
       <div class="issue__right">
         <div
@@ -58,11 +65,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import "@central-design-system/components/dist/mixins/scss/layout/convert";
+
 .issue {
   display: flex;
   flex-direction: column;
-  grid-row-gap: 0.25rem;
-  padding: 0.5rem 1rem;
+  grid-row-gap: toRem(4px);
+  padding: toRem(8px) toRem(16px);
   background-color: var(--cds-color-background-container-primary);
 
   &:hover {
@@ -84,7 +93,7 @@ export default {
     flex: 1 1 auto;
 
     & > *:not(:last-child) {
-      margin-right: 0.5rem;
+      margin-right: toRem(8px);
     }
   }
 
@@ -98,17 +107,25 @@ export default {
   &__title {
     font-size: var(--cds-font-heading-5);
     font-weight: var(--cds-font-weight-semi-bold);
+    color: var(--cds-color-interactive-01-default);
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      color: var(--cds-color-interactive-01-hover);
+    }
   }
 
   &__subtitle {
     font-size: var(--cds-font-heading-6);
-    margin-left: 1.5rem;
+    margin-left: toRem(24px);
   }
 
   &__comment {
     display: flex;
     align-items: center;
-    grid-column-gap: 0.25rem;
+    grid-column-gap: toRem(4px);
   }
 }
 </style>

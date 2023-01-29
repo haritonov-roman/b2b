@@ -1,8 +1,6 @@
 <script>
 import { mapGetters } from 'vuex'
-import { fetchCursor } from '@/api/main'
 import UiIssue from '@/components/UiIssue'
-import store from '@/store'
 
 export default {
   name: 'UiIssues',
@@ -11,68 +9,25 @@ export default {
     UiIssue
   },
 
+  props: {
+    itemsOnPage: {
+      type: Number,
+      required: true,
+      default: 5
+    }
+  },
+
   data: () => ({
-    itemsOnPage: 25,
     current: 1
   }),
-
-  created () {
-    this.getData({
-      first: this.itemsOnPage
-    })
-  },
 
   computed: {
     ...mapGetters(['issuesTotalCount', 'issuesNodes'])
   },
 
   watch: {
-    async current (value) {
-      window.scrollTo(0, 0)
-
-      // Пагинация работает не оптимальным образом: требуется делать избыточное количество запросов.
-      // GitHub GraphQl для списков не позволяет передать параметр offset чтобы была возможность запросить записи начиная с ...
-      // Вместо этого нужно запросить page-1 и взять свойство endCursor и уже от него брать нужное количество
-      // Вторая проблема: api не отдает больше 100 записей, т.о. чтобы запросить курсор 100+ записи нужно сделать это итеративно
-      if (value === 1) {
-        this.getData({
-          first: this.itemsOnPage
-        })
-      } else {
-        const items = (value - 1) * this.itemsOnPage
-        const result = Math.trunc(items / 100)
-
-        const fn = async (count) => {
-          let cursor = ''
-
-          for (let i = 0; i < count; i++) {
-            await fetchCursor({
-              first: 100,
-              after: cursor ? `"${cursor}"` : ''
-            }).then((res) => {
-              cursor = res.data.repository.openIssues.pageInfo.endCursor
-            })
-          }
-
-          return cursor
-        }
-
-        fetchCursor({
-          first: items > 100 ? (items - (result * 100) ? items - (result * 100) : this.itemsOnPage) : items,
-          after: items > 100 ? `"${await fn(result)}"` : ''
-        }).then((res) => {
-          this.getData({
-            first: this.itemsOnPage,
-            after: `"${res.data.repository.openIssues.pageInfo.endCursor}"`
-          })
-        })
-      }
-    }
-  },
-
-  methods: {
-    getData (payload) {
-      store.dispatch('getIssues', payload)
+    current (value) {
+      this.$emit('change', value)
     }
   }
 }
@@ -108,6 +63,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import "@central-design-system/components/dist/mixins/scss/layout/convert";
+
 .issues {
   display: flex;
   flex-direction: column;
@@ -125,7 +82,7 @@ export default {
 
   &__header,
   &__footer {
-    padding: 0.5rem 1rem;
+    padding: toRem(8px) toRem(16px);
   }
 
   &__header {
@@ -138,7 +95,7 @@ export default {
   }
 
   &__wrap {
-    grid-column-gap: 0.25rem;
+    grid-column-gap: toRem(4px);
   }
 }
 </style>

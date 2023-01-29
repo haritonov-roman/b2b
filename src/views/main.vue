@@ -1,21 +1,60 @@
 <script>
-import UiIssues from '@/components/UiIssues'
+import UiBreadcrumbs from '@/components/UiBreadcrumbs'
+import UiRepositoryCard from '@/components/UiRepositoryCard'
 
 export default {
   name: 'MainView',
 
   components: {
-    UiIssues
-  }
+    UiBreadcrumbs,
+    UiRepositoryCard
+  },
+
+  data: () => ({
+    routes: [
+      { text: 'repositories', to: { path: '/' } }
+    ],
+    reps: [
+      {
+        name: 'Vue',
+        route: 'vuejs/vue/issues'
+      },
+      {
+        name: 'React',
+        route: 'facebook/react/issues'
+      },
+      {
+        name: 'Angular',
+        route: 'angular/angular/issues'
+      },
+      {
+        name: 'Svelte',
+        route: 'sveltejs/svelte/issues'
+      }
+    ]
+  })
 }
 </script>
 
 <template>
-  <cds-grid fluid>
-    <cds-row>
-      <cds-col xs="8" sm="8" md="10" offset-md="3">
-        <ui-issues/>
-      </cds-col>
-    </cds-row>
-  </cds-grid>
+  <div>
+    <ui-breadcrumbs :routes="routes" />
+    <div class="main__wrap">
+      <ui-repository-card
+        v-for="(item, index) in reps"
+        :key="index"
+        :value="item"
+      />
+    </div>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+@import "@central-design-system/components/dist/mixins/scss/layout/convert";
+
+.main__wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: toRem(16px);
+}
+</style>
