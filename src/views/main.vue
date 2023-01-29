@@ -1,5 +1,4 @@
 <script>
-import store from '@/store'
 import UiIssues from '@/components/UiIssues'
 
 export default {
@@ -7,12 +6,6 @@ export default {
 
   components: {
     UiIssues
-  },
-
-  created () {
-    store.dispatch('getIssues', {
-      first: 25
-    })
   }
 }
 </script>
@@ -21,7 +14,7 @@ export default {
   <cds-grid fluid>
     <cds-row>
       <cds-col xs="8" sm="8" md="10" offset-md="3">
-        <ui-issues />
+        <ui-issues/>
       </cds-col>
     </cds-row>
   </cds-grid>

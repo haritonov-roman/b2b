@@ -18,7 +18,7 @@ export default {
         lastDay: '[Yesterday]',
         lastWeek: '[Last week]',
         sameElse: 'DD.MM.YYYY'
-      })} by ${this.issue.author.login}`
+      })}${this.issue.author ? `by ${this.issue.author.login}` : ''}`
     }
   }
 }

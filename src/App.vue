@@ -24,6 +24,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--cds-font-base);
   color: var(--cds-color-text-primary);
+  scroll-behavior: smooth;
 }
 
 #app {
