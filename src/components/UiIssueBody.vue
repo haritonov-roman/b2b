@@ -62,71 +62,91 @@ export default {
 <style lang="scss">
 @import "@central-design-system/components/dist/mixins/scss/layout/convert";
 
-.issue-body {
-  display: flex;
-  grid-column-gap: toRem(16px);
-
-  &__desc,
-  &__sidebar
-  {
+@media screen and (min-width: 20rem) {
+  .issue-body {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     grid-row-gap: toRem(16px);
-    padding: toRem(16px);
-    background-color: var(--cds-color-background-container-primary);
-    border: var(--cds-border-element-01) var(--cds-color-border-element-secondary);
-    border-radius: var(--cds-border-radius-m);
-  }
 
-  &__desc {
-    width: 100%;
-    max-width: 75%;
-    & a {
-      text-decoration: none;
-      color: var(--cds-color-interactive-01-default);
+    &__desc,
+    &__sidebar
+    {
+      display: flex;
+      flex-direction: column;
+      grid-row-gap: toRem(16px);
+      padding: toRem(16px);
+      background-color: var(--cds-color-background-container-primary);
+      border: var(--cds-border-element-01) var(--cds-color-border-element-secondary);
+      border-radius: var(--cds-border-radius-m);
+    }
 
-      &:hover {
-        color: var(--cds-color-interactive-01-hover);
+    &__desc {
+      width: 100%;
+      max-width: fit-content;
+
+      & a {
+        text-decoration: none;
+        color: var(--cds-color-interactive-01-default);
+
+        &:hover {
+          color: var(--cds-color-interactive-01-hover);
+        }
+      }
+
+      & hr {
+        display: none;
+      }
+
+      & h3 {
+        font-size: var(--cds-font-heading-5);
+        font-weight: var(--cds-font-weight-semi-bold);
+      }
+
+      & .snippet-clipboard-content .notranslate {
+        overflow-x: auto;
       }
     }
 
-    & hr {
-      display: none;
+    &__sidebar {
+      width: 100%;
+      height: fit-content;
     }
 
-    & h3 {
-      font-size: var(--cds-font-heading-5);
+    &__labels *:not(:last-child) {
+      margin-right: toRem(8px);
+    }
+
+    &__sidebar-title {
       font-weight: var(--cds-font-weight-semi-bold);
     }
 
-    & .snippet-clipboard-content .notranslate {
-      overflow-x: auto;
+    &__participants {
+      display: flex;
+      flex-direction: column;
+      grid-row-gap: toRem(8px);
+    }
+
+    &__participants-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      grid-gap: toRem(8px);
     }
   }
+}
 
-  &__sidebar {
-    width: 25%;
-    height: fit-content;
-  }
+@media screen and (min-width: 42rem) {
+  .issue-body {
+    flex-direction: row;
+    grid-column-gap: toRem(16px);
 
-  &__labels *:not(:last-child) {
-    margin-right: toRem(8px);
-  }
+    &__desc {
+      width: 100%;
+      max-width: 75%;
+    }
 
-  &__sidebar-title {
-    font-weight: var(--cds-font-weight-semi-bold);
-  }
-
-  &__participants {
-    display: flex;
-    flex-direction: column;
-    grid-row-gap: toRem(8px);
-  }
-
-  &__participants-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: toRem(8px);
+    &__sidebar {
+      width: 25%;
+    }
   }
 }
 </style>

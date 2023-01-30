@@ -52,9 +52,19 @@ export default {
 <style lang="scss" scoped>
 @import "@central-design-system/components/dist/mixins/scss/layout/convert";
 
-.main__wrap {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: toRem(16px);
+@media screen and (min-width: 20rem) {
+  .main__wrap {
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: toRem(16px);
+  }
+}
+
+@media screen and (min-width: 42rem) {
+  .main__wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: toRem(16px);
+  }
 }
 </style>

@@ -39,7 +39,7 @@ export default {
       <div class="issues__wrap">
         <span>{{ issuesTotalCount }} Open</span>
       </div>
-      <div class="issues__wrap">
+      <div class="issues__wrap issues__pagination">
         <cds-pagination
           v-model="current"
           :perPage="itemsOnPage"
@@ -65,37 +65,49 @@ export default {
 <style lang="scss" scoped>
 @import "@central-design-system/components/dist/mixins/scss/layout/convert";
 
-.issues {
-  display: flex;
-  flex-direction: column;
-  border: var(--cds-border-element-01) var(--cds-color-border-element-primary);
-  border-radius: var(--cds-border-radius-m);
-  background-color: var(--cds-color-background-container-secondary);
-  overflow: hidden;
-
-  &__header,
-  &__footer,
-  &__wrap {
+@media screen and (min-width: 20rem) {
+  .issues {
     display: flex;
-    align-items: center;
-  }
+    flex-direction: column;
+    border: var(--cds-border-element-01) var(--cds-color-border-element-primary);
+    border-radius: var(--cds-border-radius-m);
+    background-color: var(--cds-color-background-container-secondary);
+    overflow: hidden;
 
-  &__header,
-  &__footer {
-    padding: toRem(8px) toRem(16px);
-  }
+    &__header,
+    &__footer,
+    &__wrap {
+      display: flex;
+      align-items: center;
+    }
 
-  &__header {
-    justify-content: space-between;
-    border-bottom: var(--cds-border-element-01) var(--cds-color-border-element-primary);
-  }
+    &__header,
+    &__footer {
+      padding: toRem(8px) toRem(16px);
+    }
 
-  &__footer {
-    justify-content: center;
-  }
+    &__header {
+      justify-content: space-between;
+      border-bottom: var(--cds-border-element-01) var(--cds-color-border-element-primary);
+    }
 
-  &__wrap {
-    grid-column-gap: toRem(4px);
+    &__footer {
+      justify-content: center;
+    }
+
+    &__wrap {
+      grid-column-gap: toRem(4px);
+    }
+
+    &__pagination {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 42rem) {
+  .issues__pagination {
+    display: block;
   }
 }
 </style>
