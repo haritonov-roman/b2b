@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UiHeader.vue Снимок 1`] = `
+<cds-header-service-stub>
+  <div
+    class="header"
+  >
+    <div
+      class="header__logo"
+    >
+      <img
+        alt="github-mark"
+        src="@/assets/svg/github-mark.svg"
+      />
+    </div>
+     
+    <h1
+      class="header__title"
+    >
+      GitHub issue viewer: vue
+    </h1>
+  </div>
+</cds-header-service-stub>
+`;

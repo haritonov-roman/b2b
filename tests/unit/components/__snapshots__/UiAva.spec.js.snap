@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UiAva.vue Снимок 1`] = `
+<img
+  alt="ava"
+  class="ava"
+  src="https://avatars.githubusercontent.com/u/46739861?u=b461863a46253deb150f48f0ae61823f763c0475&v=4"
+/>
+`;

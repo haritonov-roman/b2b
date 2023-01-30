@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UiRepositoryCard.vue Снимок 1`] = `
+<cds-container-stub
+  color="primary"
+  href="vuejs/vue/issues"
+  label="container"
+  tag="div"
+  type="clickable"
+>
+  <div
+    class="repository__wrap"
+  >
+    <span
+      class="repository__title"
+    >
+      Vue
+    </span>
+     
+    <cds-icon-stub
+      name="External"
+    />
+  </div>
+</cds-container-stub>
+`;

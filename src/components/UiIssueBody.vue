@@ -63,8 +63,7 @@ export default {
 @import "@central-design-system/components/dist/mixins/scss/layout/convert";
 
 .issue-body {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
   grid-column-gap: toRem(16px);
 
   &__desc,
@@ -80,6 +79,8 @@ export default {
   }
 
   &__desc {
+    width: 100%;
+    max-width: 75%;
     & a {
       text-decoration: none;
       color: var(--cds-color-interactive-01-default);
@@ -98,12 +99,13 @@ export default {
       font-weight: var(--cds-font-weight-semi-bold);
     }
 
-    & .snippet-clipboard-content pre {
+    & .snippet-clipboard-content .notranslate {
       overflow-x: auto;
     }
   }
 
   &__sidebar {
+    width: 25%;
     height: fit-content;
   }
 

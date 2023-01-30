@@ -16,6 +16,7 @@ export default {
   <img
     :src="src"
     class="ava"
+    alt="ava"
   />
 </template>
 

@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UiBreadcrumbs.vue Снимок 1`] = `
+<cds-breadcrumbs-stub
+  class="breadcrumbs"
+  items=""
+/>
+`;

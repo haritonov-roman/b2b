@@ -13,12 +13,10 @@ export default {
 </script>
 
 <template>
-  <div>
-    <cds-breadcrumbs
-      :items="routes"
-      class="breadcrumbs"
-    />
-  </div>
+  <cds-breadcrumbs
+    :items="routes"
+    class="breadcrumbs"
+  />
 </template>
 
 <style lang="scss" scoped>
